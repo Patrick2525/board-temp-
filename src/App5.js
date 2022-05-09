@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 /*
     delete & update a Item(Row)
 */
+
+
 class App5 extends Component {
     constructor(props) {
         super(props);
@@ -41,10 +43,10 @@ class App5 extends Component {
         }
     }
     
-    handleRemove = (brdno) => {
+    handleRemove = (brdno) => { // 사용자가 삭제 버튼을 클릭하면 부모에 저장된 boards에서 해당 글을 삭제한다
         this.setState({
-            boards: this.state.boards.filter(row => row.brdno !== brdno)
-        })
+            boards: this.state.boards.filter(row => row.brdno !== brdno) // 삭제할 때는, 사용자가 선택한 글 번호(brdno)에 해당하는 글을 찾아서 삭제
+        })                                                               // 배열에서 값을 삭제하는 것을 filter사용 권장
     }
     
     handleSelectRow = (row) => {
@@ -94,6 +96,7 @@ class BoardItem extends React.Component {
                 <td><a onClick={this.handleSelectRow}>{this.props.row.brdtitle}</a></td>
                 <td>{this.props.row.brdwriter}</td>
                 <td>{this.props.row.brddate.toLocaleDateString('ko-KR')}</td>
+                {/* 삭제버튼 */}
                 <td><button onClick={this.handleRemove}>X</button></td>
             </tr>
         );
